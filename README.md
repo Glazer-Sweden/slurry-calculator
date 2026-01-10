@@ -1,2 +1,9 @@
-# slurry-calculator
-Slurry Calculator – To Adjust Liter Weight.  A lightweight, installable web app for ceramicists and materials engineers to calculate and adjust the liter weight of ceramic slurries. Built as a Progressive Web App (PWA), it works offline and is optimized for both mobile and desktop use.  Calculates slurry volume, powder,  water content, . S.G. +++
+Slurry Calculator for Adjusting Liter Weight & Calculating S.G. (ceramic glazes, casting slips, and other slurries). 
+A lightweight, installable web app for ceramicists, potters and materials technicians & engineers. 
+Built as a Progressive Web App (PWA), it works offline and is optimized for both mobile and desktop use. 
+Calculates:
+Water to add or remove. 
+Powder to add or remove. 
+Powder & water content. 
+Slurry volume & weight. 
+S.G. / Density / Relative Density for the powder mixture within the slurry.
