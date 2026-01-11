@@ -1,4 +1,4 @@
-const CACHE_NAME = "slurry-cache-v2"; // bump this every update
+const CACHE_NAME = "slurry-cache-v3"; // bump this every update
 
 const urlsToCache = [
   "/slurry-calculator/",
@@ -33,3 +33,4 @@ self.addEventListener("fetch", event => {
     caches.match(event.request).then(response => response || fetch(event.request))
   );
 });
+
