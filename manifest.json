@@ -1,7 +1,7 @@
 {
   "name": "Slurry Calculator",
   "short_name": "SlurryCalc",
-  "start_url": ".",
+  "start_url": "/slurry-calculator/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0087ff",
