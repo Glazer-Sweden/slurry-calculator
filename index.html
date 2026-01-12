@@ -2,29 +2,26 @@
 <html lang="en">
 <head>
 
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Slurry Calculator – Adjust Liter Weight</title>
 
-<!-- PWA additions -->
+<!-- PWA -->
 <link rel="manifest" href="/slurry-calculator/manifest.json">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/slurry-calculator/icons/icon-192.png">
 
+<!-- Service worker registration -->
 <script>
-/* Service worker registration + update popup */
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/slurry-calculator/service-worker.js").then(reg => {
+  navigator.serviceWorker.register("/slurry-calculator/sw.js").then(reg => {
     reg.onupdatefound = () => {
       const newWorker = reg.installing;
       newWorker.onstatechange = () => {
         if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
           const refresh = confirm("A new version of Slurry Calculator is available. Reload now?");
-          if (refresh) {
-            window.location.reload();
-          }
+          if (refresh) window.location.reload();
         }
       };
     };
@@ -62,7 +59,6 @@ td.label {
     border: 1px solid #ccc;
     background: #fafafa;
     text-align: left;
-    white-space: wrap;
 }
 
 td.value {
@@ -78,7 +74,6 @@ td.value {
 td.value.readonly {
     background: #ffffff;
     color: #222;
-    width: 20%;
 }
 
 input[type="number"] {
@@ -102,13 +97,13 @@ input[type="number"] {
 
 <body>
 
-<!-- Offline detection banner -->
+<!-- Offline banner -->
 <div id="offlineBanner" 
-     style="display:none; background:#ffcc00; padding:6px; text-align:center; font-size:0.9rem;">
+     style="display:none; background:#ffcc00; padding:6px; text-align:center; font-size:0.9rem; width:100%; position:fixed; top:0; left:0; z-index:9999;">
   You are offline. Some features may be limited.
 </div>
 
-<div class="calculator-container">
+<div class="calculator-container" style="margin-top:40px;">
 <table>
 <tbody>
 
@@ -228,7 +223,6 @@ input[type="number"] {
 </div>
 
 <script>
-/* Calculator logic (unchanged) */
 function recalc() {
 
 const B2 = parseFloat(document.getElementById("densityPowder").value) || 0;
@@ -277,20 +271,19 @@ document.getElementById("volumeOfSlurryStart").textContent = B21 === "N/A" ? "N/
 }
 </script>
 
-<!-- Offline detection script -->
+<!-- Offline detection -->
 <script>
-function updateOnlineStatus() {
-  const banner = document.getElementById("offlineBanner");
-  if (navigator.onLine) {
-    banner.style.display = "none";
-  } else {
-    banner.style.display = "block";
+document.addEventListener("DOMContentLoaded", () => {
+  function updateOnlineStatus() {
+    const banner = document.getElementById("offlineBanner");
+    banner.style.display = navigator.onLine ? "none" : "block";
   }
-}
 
-window.addEventListener("online", updateOnlineStatus);
-window.addEventListener("offline", updateOnlineStatus);
-updateOnlineStatus();
+  window.addEventListener("online", updateOnlineStatus);
+  window.addEventListener("offline", updateOnlineStatus);
+
+  updateOnlineStatus();
+});
 </script>
 
 </div>
