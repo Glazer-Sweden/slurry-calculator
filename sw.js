@@ -1,4 +1,4 @@
-const CACHE_NAME = "slurry-cache-v6";
+const CACHE_NAME = "slurry-cache-v7";
 
 const urlsToCache = [
   "/slurry-calculator/",
@@ -39,3 +39,4 @@ self.addEventListener("fetch", event => {
     caches.match(event.request).then(response => response || fetch(event.request))
   );
 });
+
