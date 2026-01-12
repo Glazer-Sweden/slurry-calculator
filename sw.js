@@ -35,8 +35,29 @@ self.addEventListener("activate", event => {
 });
 
 self.addEventListener("fetch", event => {
+
+  // 🔥 Fix Option A — network‑first for navigations (index.html)
+  if (event.request.mode === "navigate") {
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          // Cache the fresh version
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put("/slurry-calculator/index.html", clone);
+          });
+          return response;
+        })
+        .catch(() => {
+          // Offline fallback
+          return caches.match("/slurry-calculator/index.html");
+        })
+    );
+    return;
+  }
+
+  // Default cache‑first for all other requests
   event.respondWith(
     caches.match(event.request).then(response => response || fetch(event.request))
   );
 });
-
