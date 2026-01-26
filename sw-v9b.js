@@ -30,8 +30,8 @@ If you want to simplify, you can remove the second one — but it’s not requir
   "./",
   "/slurry-calculator/index.html",
 
-  "/slurry-calculator/styles.css",
-  "/slurry-calculator/script.js",
+/*  "/slurry-calculator/styles.css",
+  "/slurry-calculator/script.js",  */
 
   "/slurry-calculator/icons/icon-192.png",
   "/slurry-calculator/icons/icon-512.png",
@@ -90,4 +90,5 @@ self.addEventListener("message", event => {
     event.source.postMessage({ version: APP_VERSION });
   }
 });
+
 
