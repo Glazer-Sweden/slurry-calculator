@@ -27,7 +27,8 @@ const urlsToCache = [
 These behave the same on GitHub Pages, but keeping both is harmless.
 If you want to simplify, you can remove the second one — but it’s not required.*/
 
-  "./",
+/*  "./", */
+  
   "/slurry-calculator/index.html",
 
 /*  "/slurry-calculator/styles.css",
@@ -90,5 +91,6 @@ self.addEventListener("message", event => {
     event.source.postMessage({ version: APP_VERSION });
   }
 });
+
 
 
