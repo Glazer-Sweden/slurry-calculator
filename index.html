@@ -350,23 +350,30 @@ window.addEventListener("load", requestAppVersion);
 
 
 <script>
-/* Offline detection — unchanged */
-
 document.addEventListener("DOMContentLoaded", () => {
   function updateOnlineStatus() {
     const banner = document.getElementById("offlineBanner");
-    banner.style.display = navigator.onLine ? "none" : "block";
+    const container = document.querySelector(".calculator-container");
+
+    if (navigator.onLine) {
+      banner.style.display = "none";
+      container.style.marginTop = "0px";
+    } else {
+      banner.style.display = "block";
+      container.style.marginTop = "40px";
+    }
   }
 
+  // Listen for connection changes
   window.addEventListener("online", updateOnlineStatus);
   window.addEventListener("offline", updateOnlineStatus);
 
+  // Run once on load
   updateOnlineStatus();
 });
-
 </script>
 
-
+  
 <!-- Update Toast -->
 <div id="updateToast" 
      style="
@@ -389,6 +396,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
